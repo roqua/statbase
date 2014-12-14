@@ -11,20 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212120519) do
+ActiveRecord::Schema.define(version: 20141214114719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "tablefunc"
 
   create_table "datapoints", force: true do |t|
     t.date     "date",       null: false
-    t.string   "metric",     null: false
-    t.string   "scope",      null: false
     t.float    "value",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "scope_id"
+    t.integer  "metric_id"
+  end
+
+  create_table "metrics", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "datapoints", ["date", "metric", "scope"], name: "index_datapoints_on_date_and_metric_and_scope", unique: true, using: :btree
+  create_table "scopes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

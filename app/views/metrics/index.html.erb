@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @metrics.each do |metric| %>
+    <tr>
+      <td><%= link_to metric.name, metric %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
