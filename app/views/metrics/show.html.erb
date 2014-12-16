@@ -1,10 +1,11 @@
-<table border="1">
+<table>
+  <caption><%= @metric.name %></caption>
   <thead>
     <tr>
       <th>Date</th>
 
       <% @scopes.each do |scope| %>
-      <th><%= scope.name %></th>
+      <th id="scope-<%= scope.id %>" scope="column"><%= scope.name %></th>
       <% end %>
     </tr>
   </thead>
@@ -12,9 +13,9 @@
   <tbody>
     <% @datapoints.each do |date, values| %>
     <tr>
-      <td><%= date %></td>
+      <th id="date-<%= date %>" scope="row"><%= date %></th>
       <% @scopes.each do |scope| %>
-      <td><%= values.first[scope.id.to_s] %></td>
+      <td headers="date-<%= date %> scope-<%= scope.id %>"><%= values.first[scope.id.to_s] %></td>
       <% end %>
     </tr>
     <% end %>
